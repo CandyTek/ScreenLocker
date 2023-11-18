@@ -13,6 +13,7 @@ import android.graphics.Region;
 import android.graphics.drawable.Drawable;
 import android.graphics.drawable.GradientDrawable;
 import android.graphics.drawable.StateListDrawable;
+import android.os.Build;
 import android.util.AttributeSet;
 import android.view.MotionEvent;
 import android.view.View;
@@ -444,11 +445,14 @@ public class SwitchButton extends CompoundButton {
         boolean useGeneralDisableEffect = !isEnabled() &&
                 this.notStatableDrawable();
         if (useGeneralDisableEffect) {
-            canvas.saveLayerAlpha(mSaveLayerZone, 255 / 2,
-                    Canvas.MATRIX_SAVE_FLAG | Canvas.CLIP_SAVE_FLAG |
-                            Canvas.HAS_ALPHA_LAYER_SAVE_FLAG |
-                            Canvas.FULL_COLOR_LAYER_SAVE_FLAG |
-                            Canvas.CLIP_TO_LAYER_SAVE_FLAG);
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+                canvas.saveLayerAlpha(mSaveLayerZone, 255 / 2);
+            }
+            // canvas.saveLayerAlpha(mSaveLayerZone, 255 / 2,
+            //         Canvas.MATRIX_SAVE_FLAG | Canvas.CLIP_SAVE_FLAG |
+            //                 Canvas.HAS_ALPHA_LAYER_SAVE_FLAG |
+            //                 Canvas.FULL_COLOR_LAYER_SAVE_FLAG |
+            //                 Canvas.CLIP_TO_LAYER_SAVE_FLAG);
         }
 
         mConf.getOffDrawable().draw(canvas);

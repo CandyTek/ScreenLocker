@@ -35,8 +35,8 @@ public class WelcomeActivity extends BaseActivity {
                                 InitSysActivity.class);//跳转初始化页面
                     }
                     startActivity(mIntent);
-                    overridePendingTransition(R.animator.fade_in,
-                            R.animator.fade_out);
+                    overridePendingTransition(R.anim.fade_in,
+                            R.anim.fade_out);
                     WelcomeActivity.this.finish();
                 }
             }

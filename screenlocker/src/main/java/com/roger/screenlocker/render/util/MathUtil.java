@@ -39,7 +39,7 @@ public class MathUtil {
 
 
     public static float dist(float x, float y) {
-        return FloatMath.sqrt(x * x + y * y);
+        return (float) Math.sqrt(x * x + y * y);
     }
 
 
